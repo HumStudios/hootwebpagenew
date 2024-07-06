@@ -1,11 +1,10 @@
 import React from 'react'
-
-import { FaLocationArrow } from 'react-icons/fa';
 import { BackgroundBeams } from './ui/BackgroundBeams';
 import { FlipWords } from './ui/flip-words';
+import { words } from '@/data';
 
 const Hero = () => {
-    const words = ["Better", "Asthetic", "Awsome", "Cool",];
+    
     return (
         <section id='home'>
              <div className="h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">

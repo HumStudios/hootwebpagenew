@@ -1,6 +1,23 @@
 import { link } from "fs";
-import { FaPhone } from "react-icons/fa";
 
+ export const words = [
+  "Fantastic",
+  "Superb",
+  "Wonderful",
+  "Marvelous",
+  "Stellar",
+  "Epic",
+  "Groovy",
+  "Phenomenal",
+  "Badass",
+  "Sweet",
+  "Wicked",
+  "Lit",
+  "Dope",
+  "Mind-blowing",
+  "Thrilling",
+  "Exquisite"
+  ];
 export const navItems = [
   { name: "Services", link: "#services" },
   { name: "Technologies", link: "#technologies" },
@@ -102,13 +119,13 @@ export const socialMedia = [
   {
     
     id: 5,
-    link:"https://t.me/hoot_dev",
+    link:"https://www.youtube.com/@Hoot_dev",
     img: "/youtube.png",
   },
   {
     
     id: 6,
-    link:"https://www.youtube.com/@Hoot_dev",
+    link:"https://t.me/hoot_dev",
     img: "/telegram.png",
   },
 ];
