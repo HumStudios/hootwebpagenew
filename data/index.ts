@@ -21,8 +21,8 @@ import { link } from "fs";
 export const navItems = [
   { name: "Services", link: "#services" },
   { name: "Technologies", link: "#technologies" },
-  { name: "Contact us", link: "#contact" },
-  { name: "About us", link: "#about" },
+  { name: "Contact", link: "#contact" },
+  { name: "About", link: "#about" },
   { name: "Hoot", link: "#home" },
 ];
 
