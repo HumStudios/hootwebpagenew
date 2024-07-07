@@ -2,6 +2,8 @@ import React from 'react'
 import { BackgroundBeams } from './ui/BackgroundBeams';
 import { FlipWords } from './ui/flip-words';
 import { words } from '@/data';
+import MagicButton from './ui/MagicButton';
+import ShimmerButton from './ui/ShimmerButton';
 
 const Hero = () => {
     
@@ -23,14 +25,12 @@ const Hero = () => {
         Build
         <FlipWords words={words} />  <br />
         Applciations with Hoot
+       
     </div>
-        <div className='py-10'>
-            <a href="#services">
-             
-            </a>
-        </div>
+   
     
 </div>
+<a href="#services" className="py-5"><ShimmerButton title="Let's Go!!" position="left" /> </a>
 </div>
         </section>
     )

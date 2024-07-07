@@ -5,7 +5,7 @@ import React from "react";
 import { CardBody, CardContainer, CardItem } from "./3DCard"
 import Link from "next/link";
 
-export function SerivceThreeDCard({ image, title, des }: { image: string; title: string; des: string; }) {
+export function SerivceThreeDCard({ image, title, des ,link}: { image: string; title: string; des: string; link:string}) {
     return (
         <CardContainer className="inter-var">
             <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-neutral-900 dark:border-white/[0.2] border-black/[0.1] w-[20rem] md:w-[20rem] sm:w-[30rem] h-[25rem] rounded-xl p-6 border ">
@@ -31,24 +31,19 @@ export function SerivceThreeDCard({ image, title, des }: { image: string; title:
                         alt="thumbnail"
                     />
                 </CardItem>
-                {/* <div className="flex justify-between items-center mt-20">
+                <div className="flex justify-between items-center py-5">
+          
           <CardItem
             translateZ={20}
-            as={Link}
-            href="https://twitter.com/mannupaaji"
-            target="__blank"
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+          
+            className="px-8 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
           >
-            Try now →
+           <Link
+           href={link}>
+            Explore
+           </Link>
           </CardItem>
-          <CardItem
-            translateZ={20}
-            as="button"
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Sign up
-          </CardItem>
-        </div> */}
+        </div>
             </CardBody>
         </CardContainer>
     );

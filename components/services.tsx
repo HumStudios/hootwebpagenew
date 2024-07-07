@@ -25,10 +25,10 @@ const Services = () => {
                
 
                     <div className="sm:flex-row md:flex gap-2  lg:gap-5 justify-center items-center ">
-                        {services.map(({ key, image, title, description }) => (
+                        {services.map(({ link,key, image, title, description }) => (
 
 
-                            <SerivceThreeDCard image={image} des={description} title={title}/>
+                            <SerivceThreeDCard image={image} des={description} title={title} link={link}/>
 
                         ))}
                     </div>

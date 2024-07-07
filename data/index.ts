@@ -30,7 +30,7 @@ export const services = [
   {
    key:1,
     image:"/dev.jpeg",
-    link: "#software",
+    link: "/services/software",
     title: "Software Development",
     description:
       "Hoot helps businesses bring their ideas to life with custom software development. We specialize in building user-friendly and scalable solutions tailored to your specific needs.",
@@ -38,7 +38,7 @@ export const services = [
   {
    key:2,
     image:"/mangrove.png",
-    link: "",
+    link: "/services/mangrove",
     title: "Mangrove",
     description:"Stay on top of finances with Mangrove. Our innovative billing software simplifies invoice creation, automates payments, and provides valuable business insights. Currently under development."
     
@@ -46,16 +46,16 @@ export const services = [
   {key:3,
  
     image:"/dg.jpeg",
-    link: "",
-    title: "Digital Design & Marketing ",
+    link: "/services/digital",
+    title: "Digital Marketing ",
     description:
-      "Hoot's design team creates compelling graphics and digital marketing strategies, from logos and brochures to social media, website design, and marketing campaigns, elevating your brand.",
+      "Hoot's design team creates compelling graphics and digital marketing strategies, from logos and brochures to social media,and marketing campaigns,elevating your brand.",
   },
   {
   key:4,
     image:"/pc.jpeg",
-    link: "",
-    title: "Programming course",
+    link: "/services/courses",
+    title: "Coding Bootcamp",
     description:
       "Hoot offers programs to master in-demand programming languages. For beginners or advanced learners, our courses empower you to achieve coding goals and expand your skillset.",
   },
@@ -129,3 +129,4 @@ export const socialMedia = [
     img: "/telegram.png",
   },
 ];
+
