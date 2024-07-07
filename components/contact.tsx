@@ -5,7 +5,7 @@ const Contact = () => {
     const sendMail =  () => {
     
         console.log("rtes");
-        window.location.href = "mailto:info@hoot.services"
+        window.location.href = "mailto:hoot.io.dev@gmail.com"
     }
     return (
         <section className="w-full relative" id='contact'>

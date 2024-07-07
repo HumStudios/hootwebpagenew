@@ -81,7 +81,7 @@ export const contactDetails =[
     {
         key:2,
         name:"Email",
-        data:"info@hoot.services"
+        data:"hoot.io.dev@gmail.com"
     }
 ];
 
@@ -129,4 +129,4 @@ export const socialMedia = [
     img: "/telegram.png",
   },
 ];
-
+export const courseForm ="https://docs.google.com/forms/d/e/1FAIpQLSc6KyCWPAkkr0GIHWc1ifNOKXzgZbsg8zHej-wVFPfLIjbTTQ/viewform";

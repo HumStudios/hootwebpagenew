@@ -8,7 +8,7 @@ const Page = () => {
     const sendMail =  () => {
     
         console.log("rtes");
-        window.location.href = "mailto:info@hoot.services"
+        window.location.href = "mailto:hoot.io.dev@gmail.com"
     }
   return (
     <TracingBeam className="px-6">

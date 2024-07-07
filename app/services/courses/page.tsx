@@ -3,12 +3,14 @@ import { TracingBeam } from '@/components/ui/tracing-beam'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from "next/image";
-import { contact_us, contactDetails } from '@/data';
+import { contact_us, contactDetails, courseForm } from '@/data';
+import ShimmerButton from '@/components/ui/ShimmerButton';
+import Link from 'next/link';
 const Page = () => {
   const sendMail =  () => {
     
     console.log("rtes");
-    window.location.href = "mailto:info@hoot.services"
+    window.location.href = "mailto:hoot.io.dev@gmail.com"
 }
   return (
     <TracingBeam className="px-6">
@@ -16,7 +18,7 @@ const Page = () => {
         <Image src="/hoot.png" alt='' width={80} height={80}></Image>
 
         <h1 className='text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold'>
-        Coding Bootcamp
+      Online Coding Bootcamp
         </h1>
 
         {dummyContent.map((item, index) => (
@@ -27,15 +29,25 @@ const Page = () => {
             </p>
 
             <div className="text-sm  prose prose-sm dark:prose-invert">
-              {item?.image && (
-                <Image
-                  src={item.image}
-                  alt="blog thumbnail"
-                  height="800"
-                  width="800"
-                  className="rounded-lg mb-10 object-cover"
-                />
+             
+            {item?.link &&(
+                <Link href={item.link}>
+                <ShimmerButton title='Join Now' position='left'/>
+                </Link>
               )}
+              {item?.image && (
+               <Link href={item.link}>
+               <Image
+                 src={item.image}
+                 alt="blog thumbnail"
+                 height="800"
+                 width="800"
+                 className="rounded-lg mb-10 object-cover py-5"
+               />
+              </Link>
+                
+              )}
+            
               {item.description}
             </div>
           </div>
@@ -74,8 +86,9 @@ const dummyContent = [
         </p>
 
       </>
+      
     ),
-
+    link: courseForm,
     image:
       "/c1.png",
   },
@@ -90,6 +103,7 @@ const dummyContent = [
       </>
     ),
     badge: "Changelog",
+    link:"",
     image:
     "/c2.jpg",
   },
