@@ -66,7 +66,7 @@ export default Page
 
 const dummyContent = [
   {
-    title: "Unlock Your Coding Potential with Hoo",
+    title: "Unlock Your Coding Potential with Hoot",
     description: (
       <>
         <p className='text-base py-2'>
