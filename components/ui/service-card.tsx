@@ -23,22 +23,24 @@ export function SerivceThreeDCard({ image, title, des ,link}: { image: string; t
                     {des}
                 </CardItem>
                 <CardItem translateZ="100" className="w-full mt-4">
-                    <Image
+                  <Link href={link}>
+                  <Image
                         src={image}
                         height="500"
                         width="500"
                         className="h-40 w-full object-cover rounded-xl group-hover/card:shadow-xl"
                         alt="thumbnail"
                     />
+                  </Link>
                 </CardItem>
                 <div className="flex justify-between items-center py-5">
           
           <CardItem
             translateZ={20}
           
-            className="px-8 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+            className="px-16 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
           >
-           <Link
+           <Link  
            href={link}>
             Explore
            </Link>
