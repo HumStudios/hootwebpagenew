@@ -12,13 +12,13 @@ const About = () => {
         </h1>
 
         <div className=" flex  flex-col justify-between items-center bottom-10">
-        <p className='text-sm md:text-base text-center w-2/3 py-5'>{about}</p>
+        <p className='text-sm md:text-base text-gray-200 text-center w-2/3 py-5'>{about}</p>
         <div className="flex items-center gap-2 md:gap-6">
           
                     {socialMedia.map((info) => (
                       <a href={info.link}>
                           <div
-                            key={info.id}
+                            key={info.key}
                             
                             className="w-10 h-10 cursor-pointer"
                         >

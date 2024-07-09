@@ -3,12 +3,11 @@ import { TracingBeam } from '@/components/ui/tracing-beam'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from "next/image";
-import { contact_us, contactDetails, courseForm } from '@/data';
+import { contact_us, contactDetails, courseForm, nest } from '@/data';
 import ShimmerButton from '@/components/ui/ShimmerButton';
 import Link from 'next/link';
 const Page = () => {
   const sendMail =  () => {
-    
     console.log("rtes");
     window.location.href = "mailto:hoot.io.dev@gmail.com"
 }
@@ -16,8 +15,27 @@ const Page = () => {
     <TracingBeam className="px-6">
       <div className="max-w-2xl mx-auto antialiased pt-4 relative">
         <Image src="/hoot.png" alt='' width={80} height={80}></Image>
+       <div className='h-80 md:h-96 w-full items-center justify-center flex flex-col bg-neutral-900 rounded-2xl'>
 
-        <h1 className='text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold'>
+        <Image src="/nest.png" alt='NEST' width={150} className='rounded-full  border-hoot border-4'
+        height={150}
+        >
+
+        </Image>
+        <p className='text-center mt-5'>
+        Ready to start learning? Click the button below to enter Hoot Nest and begin your journey!
+        </p>
+       <Link href={nest[1].link} className='abs'>
+                <div className=' rounded-full  bg-hoot h-10 md:h-14 w-80 mt-5 md:mt-11 items-center flex text-center text-neutral-950 justify-center font-bold text-2xl md:text-3xl '>
+                Go to Nest
+                </div>
+                </Link>
+       </div>
+
+                <h1 className='text-4xl md:text-7xl bg-clip-text text-hoot  font-sans font-bold mt-10'>
+      News
+        </h1>  
+        <h1 className='text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold mt-10'>
       Online Coding Bootcamp
         </h1>
 
@@ -78,7 +96,7 @@ export default Page
 
 const dummyContent = [
   {
-    title: "Unlock Your Coding Potential with Hoot",
+    title: "Unlock Your Coding Potential with Hoot and Show your interest by filling the form",
     description: (
       <>
         <p className='text-base py-2'>

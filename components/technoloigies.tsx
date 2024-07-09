@@ -15,7 +15,7 @@ const Technoloigies = () => {
                     Technology we serve
 
                 </h1>
-                <p className='text-center py-5'>
+                <p className='text-center py-5 text-gray-200'>
                     {technology_description}
                 </p>
                 <div className="flex gap-2  lg:gap-5 justify-center">

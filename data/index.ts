@@ -23,6 +23,7 @@ export const navItems = [
   { name: "Technologies", link: "#technologies" },
   { name: "Contact", link: "#contact" },
   { name: "About", link: "#about" },
+  { name: "Nest", link: "/services/nest" },
   { name: "Hoot", link: "#home" },
 ];
 
@@ -36,13 +37,14 @@ export const services = [
       "Hoot helps businesses bring their ideas to life with custom software development. We specialize in building user-friendly and scalable solutions tailored to your specific needs.",
   },
   {
-   key:2,
-    image:"/mangrove.png",
-    link: "/services/mangrove",
-    title: "Mangrove",
-    description:"Stay on top of finances with Mangrove. Our innovative billing software simplifies invoice creation, automates payments, and provides valuable business insights. Currently under development."
-    
-  },
+    key:4,
+      image:"/pc.jpeg",
+      link: "/services/nest",
+      title: "Nest",
+      description:
+        "Hoot offers programs to master in-demand programming languages. For beginners or advanced learners, our courses empower you to achieve coding goals and expand your skillset.",
+    },
+  
   {key:3,
  
     image:"/dg.jpeg",
@@ -52,13 +54,13 @@ export const services = [
       "Hoot's design team creates compelling graphics and digital marketing strategies, from logos and brochures to social media,and marketing campaigns,elevating your brand.",
   },
   {
-  key:4,
-    image:"/pc.jpeg",
-    link: "/services/courses",
-    title: "Coding Bootcamp",
-    description:
-      "Hoot offers programs to master in-demand programming languages. For beginners or advanced learners, our courses empower you to achieve coding goals and expand your skillset.",
-  },
+    key:2,
+     image:"/mangrove.png",
+     link: "/services/mangrove",
+     title: "Mangrove",
+     description:"Stay on top of finances with Mangrove. Our innovative billing software simplifies invoice creation, automates payments, and provides valuable business insights. Currently under development."
+     
+   },
 ];
 export const technology_description =
   "  At Hoot, we craft software solutions that empower your business. We leverage cutting-edge technologies across Android, iOS, web, and desktop platforms to deliver custom applications that meet your specific needs.  Our expertise extends beyond coding, encompassing the visual language of your brand. We offer integrated graphic design services, ensuring a seamless user experience across all touchpoints.";
@@ -88,45 +90,70 @@ export const contactDetails =[
 export const about ="At Hoot, we transform ideas into innovative software solutions. Our passionate team empowers businesses with cutting-edge technology, driving growth and efficiency. Join us on our journey to unlock new possibilities and make a difference, together.";
 export const socialMedia = [
   {
-    
-    id: 1,
+    key:1,
+  
     link:"https://x.com/hoot_dev?s=09",
     img: "/twitter.png",
   },
   {
     
-    id: 2,
+    key: 2,
     link:"https://github.com/Hoot-io-dev",
     img: "/github.png",
   },
   {
-    id: 3,
+    key: 3,
     link:"https://www.linkedin.com/in/siva-sankar-1b41091b8/",
     img: "/linkedin.png",
   },
   {
     
-    id: 4,
+    key: 4,
     link:"https://www.instagram.com/hoot_dev?utm_source=qr&igsh=dDg0Ym82aHRwcG82",
     img: "/instagram.png",
   },
   {
     
-    id: 5,
+    key: 5,
     link:"https://www.facebook.com/profile.php?id=61561787891193&mibextid=qi2Omg&rdid=rZGiaelrvYGjrThc&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FVwMHn5JbUsynt5aR%2F%3Fmibextid%3Dqi2Omg",
     img: "/facebook.png",
   },
   {
     
-    id: 5,
+    key: 6,
     link:"https://www.youtube.com/@Hoot_dev",
     img: "/youtube.png",
   },
   {
     
-    id: 6,
+    key: 7,
     link:"https://t.me/hoot_dev",
     img: "/telegram.png",
   },
 ];
 export const courseForm ="https://docs.google.com/forms/d/e/1FAIpQLSc6KyCWPAkkr0GIHWc1ifNOKXzgZbsg8zHej-wVFPfLIjbTTQ/viewform";
+
+
+export const nest = [
+  {
+    key:1,
+    name:"auth",
+    link:"/nest/authentication",
+   
+  },
+  {
+    key:2,
+    name :"login",
+    link:"/services/nest/authentication/login"
+  },
+  {
+    key:3,
+    name :"register",
+    link:"/services/nest/authentication/register"
+  },
+  {
+    key:3,
+    name:"nest",
+    link:"/services/nest/home"
+  }
+];
