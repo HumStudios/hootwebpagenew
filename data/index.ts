@@ -157,3 +157,48 @@ export const nest = [
     link:"/services/nest/home"
   }
 ];
+export const people = [
+  {
+    id: 1,
+    name: "Siva Sankar",
+    designation: "Hoot Developement",
+    image:
+      "/siva.jpg",
+  },
+  {
+    id: 2,
+    name: "Arun Nair",
+    designation: "Hoot Digital Marketing",
+    image:
+      "/arun.jpg",
+  },
+  {
+    id: 3,
+    name: "Aromal R B",
+    designation: "Hoot Digital Marketing",
+    image:
+      "/aromal_rb.jpg",
+  },
+  {
+    id: 4,
+    name: "Abhinav",
+    designation: "Hoot Designing",
+    image:
+      "/abhinav.jpg",
+  },
+  {
+    id: 5,
+    name: "Rahul",
+    designation: "Hoot Digital Marketing",
+    image:
+      "/rahul.jpg",
+  },
+  {
+    id: 6,
+    name: "Arjun",
+    designation: "Hoot Digital Marketing",
+    image:
+      "/arjun.jpg",
+  },
+];
+ 
