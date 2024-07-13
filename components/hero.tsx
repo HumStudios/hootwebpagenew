@@ -27,7 +27,7 @@ const Hero = () => {
 
 
                 </div>
-                <a href="#services" className="py-5"><ShimmerButton title="Let's Go!!" position="left" /> </a>
+                <a href="#featured" className="py-5"><ShimmerButton title="Let's Go!!" position="left" /> </a>
             </div>
         </section>
     )

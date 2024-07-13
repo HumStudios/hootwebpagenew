@@ -19,8 +19,9 @@ import { link } from "fs";
   "Exquisite"
   ];
 export const navItems = [
+  { name: "Featured", link: "#featured" },
   { name: "Services", link: "#services" },
-  { name: "Technologies", link: "#technologies" },
+ 
   { name: "Contact", link: "#contact" },
   { name: "About", link: "#about" },
   { name: "Nest", link: "/services/nest" },

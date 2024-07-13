@@ -46,7 +46,7 @@ const Featured = () => {
     fetchFeaturedData();
   }, []);
   return (
-    <section className="w-full relative h-auto flex flex-col items-center justify-center" id='services'>
+    <section className="w-full relative h-auto flex flex-col items-center justify-center" id='featured'>
       <div className='md:py-36 py-32 '>
         <BackgroundBeams />
         <h1 className='text-2xl md:text-2xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold'>
