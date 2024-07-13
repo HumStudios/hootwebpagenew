@@ -24,7 +24,7 @@ export const navItems = [
   { name: "Contact", link: "#contact" },
   { name: "About", link: "#about" },
   { name: "Nest", link: "/services/nest" },
-  { name: "Hoot", link: "#home" },
+
 ];
 
 export const services = [
@@ -200,5 +200,15 @@ export const people = [
     image:
       "/arjun.jpg",
   },
+];
+
+export const featured =[
+  {
+    key:1,
+    heading:"NEST",
+    subHeading:"Coding Boot Camp",
+    link:"/services/nest",
+    image:"/course.jpeg"
+  }
 ];
  

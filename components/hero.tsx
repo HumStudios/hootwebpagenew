@@ -21,7 +21,7 @@ const Hero = () => {
                     <div className="text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">
                         Build
                         <FlipWords words={words} />  <br />
-                        Applciations with Hoot
+                        Applications with Hoot
 
                     </div>
 

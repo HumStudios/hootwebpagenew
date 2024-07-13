@@ -38,7 +38,7 @@ const Page = () => {
         <h1 className='text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold mt-10'>
       Online Coding Bootcamp
         </h1>
-        <Image className='mt-20 rounded-2xl border border-hoot' src="/course.png" alt='Course' height="1000" width="1000"/>
+        <Image className='mt-20 rounded-2xl border border-hoot' src="/course.jpeg" alt='Course' height="1000" width="1000"/>
         {dummyContent.map((item, index) => (
           <div key={`content-${index}`} className="mb-10 mt-10">
 

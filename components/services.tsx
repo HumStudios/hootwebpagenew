@@ -13,7 +13,7 @@ const Services = () => {
     return (
         <section className="w-full" id='services'>
             <div className='md:py-36 py-32'>
-                <BackgroundBeams />
+                
                 <h1 className='text-2xl md:text-2xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold'>
                     What we do?
 
