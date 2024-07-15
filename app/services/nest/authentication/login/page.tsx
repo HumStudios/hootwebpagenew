@@ -54,10 +54,9 @@ const Page = () => {
           setisLoading(true);
           signInWithEmailAndPassword(authFirebase, email, password)
           .then((userCredential) => {
-            
             const user = userCredential.user;
            if(user){
-
+            router.push(nest[3].link)
            }
           })
           .catch((error) => {
