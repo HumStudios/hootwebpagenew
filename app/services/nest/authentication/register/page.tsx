@@ -7,7 +7,7 @@ import { cn } from '@/utils/cn';
 import Link from 'next/link';
 import { authFirebase } from '@/app/firebase/config';
 
-import { nest } from '@/data';
+import { homeLink, nest } from '@/data';
 
 import { addDoc, collection, doc, getFirestore, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, } from 'firebase/auth';
@@ -26,7 +26,7 @@ const Page = () => {
   const [isError, setIsError] = useState('');
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!.@#$%^&*()_+-={}\[\]|\\:;'"<,>.?\/]).{8,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const handleSubmit =  () => {
+  const handleSubmit = () => {
     setIsError("");
 
     const emptyFields = [];
@@ -54,36 +54,36 @@ const Page = () => {
       return;
     }
 
-    if(!emailRegex.test(email)){
+    if (!emailRegex.test(email)) {
       setIsError("Invalid email!");
       setEmail('');
       return;
     }
-    if(password !== confirmPassword){
-    setIsError("Password did not match!");
-    setPassword('');
-    setConfirmPassword('');
+    if (password !== confirmPassword) {
+      setIsError("Password did not match!");
+      setPassword('');
+      setConfirmPassword('');
       return;
     }
-    if(!passwordRegex.test(password)){
+    if (!passwordRegex.test(password)) {
       setIsError("Password must be at least 8 characters long and contain a mix of uppercase and lowercase letters, numbers, and special characters.");
       setPassword('');
-    setConfirmPassword('');
+      setConfirmPassword('');
       return;
     }
 
-   createUser();
+    createUser();
   };
-  const createUser = async ()=>{
+  const createUser = async () => {
     try {
       setIsLoading(true);
       createUserWithEmailAndPassword(authFirebase, email, password)
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
-         if(user){
-          registerUser();
-         }
+          if (user) {
+            registerUser();
+          }
           // ...
         })
         .catch((error) => {
@@ -91,9 +91,9 @@ const Page = () => {
           const errorMessage = error.message;
           setIsLoading(false);
           setIsError(errorMessage);
-          
+
         });
-    
+
 
     } catch (error) {
       console.log(error);
@@ -101,37 +101,40 @@ const Page = () => {
       alert(error);
     }
   }
-  const registerUser =async ()=>{
+  const registerUser = async () => {
     const db = getFirestore();
-      const userRef = doc(db, 'users', email);
-      const userData = {
-        firstName: firstName,
-        lastName: seccondName,
-        phone: phone,
-        email: email
-      }
-      await setDoc(userRef, userData);
-      setIsLoading(false)
-      router.push(nest[1].link);
-      
+    const userRef = doc(db, 'users', email);
+    const userData = {
+      firstName: firstName,
+      lastName: seccondName,
+      phone: phone,
+      email: email,
+      subscription: [],
+    }
+    await setDoc(userRef, userData);
+    setIsLoading(false)
+    router.push(nest[1].link);
+
   }
-  return isLoading?(
-  <AppLoader/>
-  ): (
-    
+  return isLoading ? (
+    <AppLoader />
+  ) : (
+
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-neutral-950">
-     
-     <div className="fixed top-0 left-10 mr-4">
-                <Image src="/hoot.png" alt='Hoot' height={80} width={80}/>
-                </div>
+
+      <div className="fixed top-0 left-10 mr-4">
+        <a href={homeLink}>
+          <Image src="/hoot.png" alt='Hoot' height={80} width={80} />
+        </a>
+      </div>
       <h1 className='text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold mt-10'>
         New to Nest?
       </h1>
       {isError && (
         <div className="text-red-500 font-bold text-center mb-4">{isError}</div>
-      )} 
+      )}
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-      Let's create an account for you!
+        Let's create an account for you!
       </p>
 
 
@@ -164,7 +167,7 @@ const Page = () => {
 
       <button
         className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-       onClick={handleSubmit}
+        onClick={handleSubmit}
       >
         Register &rarr;
         <BottomGradient />
@@ -174,12 +177,12 @@ const Page = () => {
 
       <div className="flex flex-col space-y-4">
         <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center" >
-         Already have an account?
+          Already have an account?
         </p>
         <Link href={nest[1].link}>
           <button
             className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mb-10"
-            
+
           >
             Login &rarr;
             <BottomGradient />

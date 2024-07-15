@@ -21,7 +21,6 @@ import { link } from "fs";
 export const navItems = [
   { name: "Featured", link: "#featured" },
   { name: "Services", link: "#services" },
- 
   { name: "Contact", link: "#contact" },
   { name: "About", link: "#about" },
   { name: "Nest", link: "/services/nest" },
@@ -153,11 +152,24 @@ export const nest = [
     link:"/services/nest/authentication/register"
   },
   {
-    key:3,
+    key:4,
     name:"nest",
     link:"/services/nest/home"
+  },
+  {
+    key:5,
+    name:"course",
+    link:"/services/nest/course"
+  },
+  {
+    key:6,
+    name:"payment",
+    link:"/services/nest/payment"
   }
+
 ];
+export const homeLink = "/";
+export const cloudFront = "https://d2s7k4rchcbp2t.cloudfront.net/";
 export const people = [
   {
     id: 1,

@@ -1,10 +1,10 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/utils/cn';
 import Link from 'next/link';
-import { nest } from '@/data';
+import { homeLink, nest } from '@/data';
 import Image from 'next/image';
 import { signInWithEmailAndPassword, } from 'firebase/auth';
 import { authFirebase } from '@/app/firebase/config';
@@ -16,15 +16,18 @@ import { useRouter } from 'next/navigation';
 const Page = () => {
   const [user] = useAuthState(authFirebase);
   const router = useRouter();
-  if(user){
-
-    router.push(nest[3].link)
-  } 
+  
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error,setError] = useState("");
     const [isLoading,setisLoading] = useState(false);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    useEffect(()=>{
+      if(user){
+          setisLoading(true);
+        router.push(nest[3].link)
+      } 
+    },[]);
     const handleSubmit = () => {
       const emptyFields = [];
       if (!email.trim()) {
@@ -73,7 +76,9 @@ const Page = () => {
     
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input  bg-neutral-950 mt-32">
         <div className="fixed top-0 left-10 mr-4">
-                <Image src="/hoot.png" alt='Hoot' height={80} width={80}/>
+        <a href={homeLink}>
+           <Image src="/hoot.png" alt='Hoot' height={80} width={80} />
+       </a>
                 </div>
       <h1 className='text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold mt-10'>
       Welcome to Nest
