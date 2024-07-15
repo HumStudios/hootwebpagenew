@@ -172,11 +172,18 @@ export const homeLink = "/";
 export const cloudFront = "https://d2s7k4rchcbp2t.cloudfront.net/";
 export const people = [
   {
-    id: 1,
+    id: 0,
     name: "Siva Sankar",
     designation: "Hoot Developement",
     image:
       "/siva.jpg",
+  },
+  {
+    id: 1,
+    name: "SreeLakshmi",
+    designation: "Hoot Developement",
+    image:
+      "/malu.png",
   },
   {
     id: 2,

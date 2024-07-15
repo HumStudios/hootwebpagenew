@@ -16,7 +16,6 @@ import { useRouter } from 'next/navigation';
 const Page = () => {
   const [user] = useAuthState(authFirebase);
   const router = useRouter();
-  
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error,setError] = useState("");
