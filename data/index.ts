@@ -177,6 +177,7 @@ export const people = [
     designation: "Hoot Developement",
     image:
       "/siva.jpg",
+      link:"/wall"
   },
   {
     id: 1,
@@ -184,6 +185,7 @@ export const people = [
     designation: "Hoot Developement",
     image:
       "/malu.png",
+      link:""
   },
   {
     id: 2,
@@ -191,6 +193,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/arun.jpg",
+      link:"/wall"
   },
   {
     id: 3,
@@ -198,6 +201,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/aromal_rb.jpg",
+      link:"/wall"
   },
   {
     id: 4,
@@ -205,6 +209,7 @@ export const people = [
     designation: "Hoot Designing",
     image:
       "/abhinav.jpg",
+      link:"/wall"
   },
   {
     id: 5,
@@ -212,6 +217,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/rahul.jpg",
+      link:"/wall"
   },
   {
     id: 6,
@@ -219,6 +225,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/arjun.jpg",
+      link:"/wall"
   },
 ];
 
