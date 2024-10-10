@@ -13,7 +13,7 @@ const Hero = () => {
             <div className="h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
                 <BackgroundBeams />
                 <div className="fixed top-0 left-10 mr-4">
-                <Image src="/hoot.png" alt='Hoot' height={80} width={80}/>
+                <Image src="/hoot.png" alt='Hoot' height={90} width={90}/>
                 </div>
               
 
@@ -21,7 +21,7 @@ const Hero = () => {
                     <div className="text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">
                         Build
                         <FlipWords words={words} />  <br />
-                        Applications with Hoot
+                        Applications with Hum Studios 
 
                     </div>
 

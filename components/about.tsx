@@ -34,7 +34,7 @@ const About = () => {
                 </div>
                 
                 <p className="md:text-base text-sm md:font-normal font-light py-10">
-                    Copyright © 2024 Hoot
+                    Copyright © 2024 Hum Studios
                 </p>
                 <img src="./hoot.png" alt="hoot" width={120} height={30} />
 

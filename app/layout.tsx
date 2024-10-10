@@ -6,8 +6,8 @@ import { ThemeProvider } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Hoot",
-  description: "Hoot.io",
+  title: "Hum Studios",
+  description: "Hum Studios",
 };
 
 export default function RootLayout({
