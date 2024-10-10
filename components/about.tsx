@@ -13,7 +13,7 @@ const About = () => {
         </h1>
 
         <div className=" flex  flex-col justify-between items-center bottom-10">
-        <h1 className='text-2xl md:text-4xl text-left bg-clip-text  text-hoot font-sans font-bold'>Our Hoots</h1>
+        <h1 className='text-xl md:text-xl text-left bg-clip-text  text-hoot font-sans font-bold mt-10'>Humming members</h1>
         <div className="flex flex-row items-center justify-center mb-10 w-full mt-16">
       <AnimatedTooltip items={people} />
     </div>
