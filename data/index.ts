@@ -83,7 +83,7 @@ export const contactDetails =[
     {
         key:2,
         name:"Email",
-        data:"Hum Studios.io.dev@gmail.com"
+        data:"humstudios.in@gmail.com"
     }
 ];
 
@@ -92,7 +92,7 @@ export const socialMedia = [
   {
     key:1,
   
-    link:"https://x.com/hoot_dev?s=09",
+    link:"https://x.com/humstudios_in?t=NgMDik8rW3Fw3WF2rAPZCw&s=09",
     img: "/twitter.png",
   },
   {
@@ -115,13 +115,13 @@ export const socialMedia = [
   {
     
     key: 5,
-    link:"https://www.facebook.com/profile.php?id=61561787891193&mibextid=qi2Omg&rdid=rZGiaelrvYGjrThc&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FVwMHn5JbUsynt5aR%2F%3Fmibextid%3Dqi2Omg",
+    link:"https://www.facebook.com/share/KsmG88ApCCpP6T5f/?mibextid=qi2Omg",
     img: "/facebook.png",
   },
   {
     
     key: 6,
-    link:"https://www.youtube.com/@Hoot_dev",
+    link:"https://youtube.com/@humstudios_in?si=cS99iPTFnb-J0msh",
     img: "/youtube.png",
   },
   {
@@ -177,7 +177,7 @@ export const people = [
     designation: "Hoot Developement",
     image:
       "/siva.jpg",
-      link:"/wall"
+      link:""
   },
   {
     id: 1,
@@ -193,7 +193,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/arun.jpg",
-      link:"/wall"
+      link:""
   },
   {
     id: 3,
@@ -201,7 +201,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/aromal_rb.jpg",
-      link:"/wall"
+      link:""
   },
   {
     id: 4,
@@ -209,7 +209,7 @@ export const people = [
     designation: "Hoot Designing",
     image:
       "/abhinav.jpg",
-      link:"/wall"
+      link:""
   },
   {
     id: 5,
@@ -217,7 +217,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/rahul.jpg",
-      link:"/wall"
+      link:""
   },
   {
     id: 6,
@@ -225,7 +225,7 @@ export const people = [
     designation: "Hoot Digital Marketing",
     image:
       "/arjun.jpg",
-      link:"/wall"
+      link:""
   },
 ];
 
