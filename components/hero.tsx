@@ -6,7 +6,7 @@ import MagicButton from './ui/MagicButton';
 import ShimmerButton from './ui/ShimmerButton';
 import Link from "next/link";
 import Image from 'next/image';
-import { TextHoverEffect } from './ui/text-hover-effect';
+
 import { BackgroundBeamsWithCollision } from './ui/bg-beams';
 const Hero = () => {
 
