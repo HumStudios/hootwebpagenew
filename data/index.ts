@@ -29,8 +29,8 @@ export const navItems = [
 export const services = [
   {
     key: 4,
-    image: "/pc.jpeg",
-    link: "/services/nest",
+    image: "/game.jpg",
+    link: "",
     title: "Game Development",
     description:
       "Hum Studios is dedicated to creating immersive gaming experiences. we are passionate about bringing unique stories to life through innovative game design and development.",
