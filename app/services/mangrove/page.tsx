@@ -3,7 +3,7 @@ import { TracingBeam } from '@/components/ui/tracing-beam'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from "next/image";
-import { contactDetails } from '@/data';
+import { contactDetails, homeLink } from '@/data';
 const Page = () => {
     const sendMail =  () => {
     
@@ -13,7 +13,9 @@ const Page = () => {
   return (
     <TracingBeam className="px-6">
       <div className="max-w-2xl mx-auto antialiased pt-4 relative">
-        <Image src="/hoot.png" alt='' width={80} height={80}></Image>
+      <a href={homeLink}>
+           <Image src="/hoot.png" alt='Hoot' height={80} width={80} />
+       </a>
 
         <h1 className='text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold'>
          Mangrove

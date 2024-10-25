@@ -1,7 +1,7 @@
 "use client";
 import About from "@/components/about";
 import Contact from "@/components/contact";
-import Featured from "@/components/featured";
+
 import Hero from "@/components/hero";
 import Services from "@/components/services";
 import Technoloigies from "@/components/technoloigies";
@@ -9,6 +9,7 @@ import { FloatingNav } from "@/components/ui/FloatingNavBar";
 import { navItems } from "@/data";
 import { firebaseConfig } from '@/app/firebase/config';
 import { initializeApp } from 'firebase/app';
+import { FeaturesSection } from "@/components/featured";
 
 export default function Home() {
   const app = initializeApp(firebaseConfig);
@@ -17,7 +18,7 @@ export default function Home() {
     <div className="max-w-7xl w-full">
     <FloatingNav navItems={navItems}/>
       <Hero/>
-      <Featured/>
+     <FeaturesSection/>
       <Services/>
       <Technoloigies/>
       <Contact/>

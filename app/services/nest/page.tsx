@@ -3,7 +3,7 @@ import { TracingBeam } from '@/components/ui/tracing-beam'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from "next/image";
-import { contact_us, contactDetails, courseForm, nest } from '@/data';
+import { contact_us, contactDetails, courseForm, homeLink, nest } from '@/data';
 import ShimmerButton from '@/components/ui/ShimmerButton';
 import Link from 'next/link';
 const Page = () => {
@@ -14,7 +14,9 @@ const Page = () => {
   return (
     <TracingBeam className="px-6">
       <div className="max-w-2xl mx-auto antialiased pt-4 relative">
-        <Image src="/hoot.png" alt='' width={80} height={80}></Image>
+      <a href={homeLink}>
+           <Image src="/hoot.png" alt='Hoot' height={80} width={80} />
+       </a>
        <div className='h-80 md:h-96 w-full items-center justify-center flex flex-col bg-neutral-900 rounded-2xl'>
 
         <Image src="/nest.png" alt='NEST' width={150} className='rounded-full  border-hoot border-4'
