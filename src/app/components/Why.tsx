@@ -1,6 +1,6 @@
 // pages/why-choose-us.js
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { MotionDiv } from "../framer-motio";
 
 const WhyChooseUs = () => {
     const { ref: titleRef, inView: titleInView } = useInView({
@@ -8,17 +8,14 @@ const WhyChooseUs = () => {
         threshold: 0.5, // Trigger when 50% of the component is in view
     });
 
-    const { ref: cardRef, inView: cardInView } = useInView({
-        triggerOnce: true,
-        threshold: 0.5,
-    });
+
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center" ref={titleRef}>
             <div className="container px-4 py-12">
                 {/* Title Section */}
-                <motion.div
-                    ref={titleRef}
+                <MotionDiv
+
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: titleInView ? 1 : 0, y: titleInView ? 0 : 50 }}
                     transition={{ duration: 0.6 }}
@@ -30,15 +27,15 @@ const WhyChooseUs = () => {
                     <p className="text-lg text-gray-600">
                         We bring solutions
                     </p>
-                </motion.div>
+                </MotionDiv>
 
                 {/* Card Section */}
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8" >
                     {/* Innovation Card */}
-                    <motion.div
-                        ref={cardRef}
+                    <MotionDiv
+
                         initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: cardInView ? 1 : 0, x: cardInView ? 0 : -50 }}
+                        animate={{ opacity: titleInView ? 1 : 0, x: titleInView ? 0 : -50 }}
                         transition={{ duration: 1 }}
                         className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300"
                     >
@@ -47,13 +44,13 @@ const WhyChooseUs = () => {
                             At Hum Studios, we strive to push the boundaries of creativity with every project, offering
                             innovative solutions that redefine the digital experience.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Expertise Card */}
-                    <motion.div
-                        ref={cardRef}
+                    <MotionDiv
+
                         initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: cardInView ? 1 : 0, x: cardInView ? 0 : 50 }}
+                        animate={{ opacity: titleInView ? 1 : 0, x: titleInView ? 0 : 50 }}
                         transition={{ duration: 1 }}
                         className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300"
                     >
@@ -62,13 +59,13 @@ const WhyChooseUs = () => {
                             Our team is composed of experienced developers and designers who specialize in both software and
                             game development, ensuring top-quality products that meet the highest standards.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Collaboration Card */}
-                    <motion.div
-                        ref={cardRef}
+                    <MotionDiv
+
                         initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: cardInView ? 1 : 0, x: cardInView ? 0 : -50 }}
+                        animate={{ opacity: titleInView ? 1 : 0, x: titleInView ? 0 : -50 }}
                         transition={{ duration: 1 }}
                         className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300"
                     >
@@ -77,7 +74,7 @@ const WhyChooseUs = () => {
                             We value our partnerships and work closely with our clients to understand their vision, ensuring
                             that the final product perfectly aligns with their expectations and goals.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
             </div>
         </div>

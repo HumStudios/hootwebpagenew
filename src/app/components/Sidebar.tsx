@@ -1,12 +1,16 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
 
-const Sidebar = ({ isOpen, onClose }) => {
+import { Link } from 'react-scroll';
+import { MotionDiv } from '../framer-motio';
+interface SidebarProps {
+    isOpen: boolean;
+    onClose: () => void;
+  }
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) =>{
     return (
-        <motion.div
+        <MotionDiv
             className={`fixed top-0 right-0 h-full w-64 bg-gray-800 text-white z-40 shadow-lg ${isOpen ? 'block' : 'hidden'
                 }`}
             initial={{ x: '100%' }}
@@ -62,7 +66,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                     Contact
                 </Link>
             </nav>
-        </motion.div>
+        </MotionDiv>
     );
 };
 

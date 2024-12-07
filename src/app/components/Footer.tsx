@@ -1,8 +1,7 @@
 "use client";
-
-import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
+import { MotionA, MotionDiv } from "../framer-motio";
 
 const Footer = () => {
     const { ref, inView } = useInView({
@@ -47,7 +46,7 @@ const Footer = () => {
     return (
         <footer className="bg-gray-900 text-gray-300 py-6" ref={ref}>
             {/* Header Section with Animation */}
-            <motion.div
+            <MotionDiv
                 className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between"
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -62,7 +61,7 @@ const Footer = () => {
                 {/* Social Media Links */}
                 <div className="flex space-x-6">
                     {socialLinks.map((link, index) => (
-                        <motion.a
+                        <MotionA
                             key={index}
                             href={link.href}
                             target="_blank"
@@ -73,20 +72,20 @@ const Footer = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             {link.icon}
-                        </motion.a>
+                        </MotionA>
                     ))}
                 </div>
-            </motion.div>
+            </MotionDiv>
 
             {/* Footer Bottom */}
-            <motion.div
+            <MotionDiv
                 className="text-center mt-6 text-sm text-gray-500"
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.6 }}
             >
                 &copy; {new Date().getFullYear()} Hum Studios. All rights reserved.
-            </motion.div>
+            </MotionDiv>
         </footer>
     );
 };

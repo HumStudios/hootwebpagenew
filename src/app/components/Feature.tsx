@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { game_dev, mobile_dev, web_dev } from '@/data/images';
 import Link from 'next/link';
+import { MotionDiv, MotionH2 } from '../framer-motio';
 
 const Feature = () => {
     const { ref, inView } = useInView({
@@ -24,7 +25,7 @@ const Feature = () => {
 
     return (
         <section id="featured" className="py-16 px-6" ref={ref}>
-            <motion.h2
+            <MotionH2
                 className="text-center text-4xl font-bold "
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
@@ -32,11 +33,11 @@ const Feature = () => {
             >
                 What we do
 
-            </motion.h2>
+            </MotionH2>
             <p className="text-lg text-gray-600 text-center my-6">
                 From Concept to Execution, We Build Exceptional Digital Experiences
             </p>
-            <motion.div
+            <MotionDiv
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: inView ? 1 : 0 }}
@@ -44,7 +45,7 @@ const Feature = () => {
             >
                 {/* Mobile App Development */}
                 <Link href="/services/mobile">
-                    <motion.div
+                    <MotionDiv
                         className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-96"
                         initial="hidden"
                         animate={inView ? 'visible' : 'hidden'}
@@ -62,12 +63,12 @@ const Feature = () => {
                         <p className="text-gray-700">
                             We create intuitive and responsive mobile applications that provide seamless user experiences and help businesses expand their reach.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
                 </Link>
 
                 {/* Web Development */}
                 <Link href="/services/web">
-                    <motion.div
+                    <MotionDiv
                         className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-96"
                         initial="hidden"
                         animate={inView ? 'visible' : 'hidden'}
@@ -85,12 +86,12 @@ const Feature = () => {
                         <p className="text-gray-700">
                             We specialize in building modern and responsive websites that drive engagement, enhance brand presence, and offer exceptional functionality.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
                 </Link>
 
                 {/* Game Development */}
                 <Link href="/services/game">
-                    <motion.div
+                    <MotionDiv
                         className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-96"
                         initial="hidden"
                         animate={inView ? 'visible' : 'hidden'}
@@ -108,13 +109,13 @@ const Feature = () => {
                         <p className="text-gray-700">
                             Our game development services combine creativity and cutting-edge technology to create engaging and immersive gaming experiences across platforms.
                         </p>
-                    </motion.div>
+                    </MotionDiv>
                 </Link>
 
                 {/* Software Development */}
 
 
-            </motion.div>
+            </MotionDiv>
         </section>
     );
 };

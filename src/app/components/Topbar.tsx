@@ -3,7 +3,6 @@
 import { logo } from '@/data/images';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-scroll'; // Import Link from react-scroll
 import Sidebar from './Sidebar'; // Import the Sidebar component
 
@@ -11,11 +10,9 @@ const Topbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
 
   return (
-    <motion.header
+    <header
       className="fixed top-0 left-0 w-full bg-background z-50 " // Added z-50 for higher stacking order
-      initial={{ y: -100, opacity: 0 }} // Initial state (invisible and off-screen)
-      animate={{ y: 0, opacity: 1 }} // Final state (visible and in place)
-      transition={{ type: 'spring', stiffness: 100, damping: 25 }} // Animation type
+
     >
 
       <div className="flex items-center justify-between px-6 h-16">
@@ -83,7 +80,7 @@ const Topbar = () => {
 
       {/* Sidebar Component */}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-    </motion.header>
+    </header>
   );
 };
 

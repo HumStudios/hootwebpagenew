@@ -1,9 +1,10 @@
 "use client";
 // pages/contact.js
-import { motion } from 'framer-motion';
+
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import emailjs from '@emailjs/browser'
+import { MotionDiv } from '../framer-motio';
 const Contact = () => {
     const { ref, inView } = useInView({
         triggerOnce: true,
@@ -36,10 +37,10 @@ const Contact = () => {
             };
             // Replace with your actual service ID, template ID, and user ID from EmailJS
             const response = await emailjs.send(
-                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, // Service ID
-                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, // Template ID
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "", // Service ID
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "", // Template ID
                 templateParams, // Template parameters
-                process.env.NEXT_PUBLIC_EMAILJS_USER_ID // User ID
+                process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "" // User ID
             );
 
             if (response.status === 200) {
@@ -57,11 +58,11 @@ const Contact = () => {
     };
 
     return (
-        <section id='contact'>
+        <section id='contact' ref={ref}>
             <div className="min-h-screen flex flex-col justify-center items-center py-16 px-4">
                 {/* Header Section with animation */}
-                <motion.div
-                    ref={ref}
+                <MotionDiv
+
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
                     transition={{ duration: 0.6 }}
@@ -71,11 +72,11 @@ const Contact = () => {
                     <p className="text-lg text-gray-600">
                         We'd love to hear from you. Reach out to us for any inquiries or collaborations!
                     </p>
-                </motion.div>
+                </MotionDiv>
 
                 {/* Contact Form Section */}
-                <motion.div
-                    ref={ref}
+                <MotionDiv
+
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: inView ? 1 : 0, scale: inView ? 1 : 0.8 }}
                     transition={{ duration: 0.6 }}
@@ -122,7 +123,7 @@ const Contact = () => {
                             <textarea
                                 id="message"
                                 name="message"
-                                rows="4"
+                                rows={4}
                                 value={formData.message}
                                 onChange={handleChange}
                                 className="mt-2 block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm focus:bg-white focus:border-blue-100"
@@ -131,16 +132,13 @@ const Contact = () => {
                         </div>
 
                         {/* Submit Button */}
-                        <motion.button
+                        <button
                             type="submit"
-                            disabled={isSubmitting}
                             className="w-full bg-slate-800 text-white font-semibold py-3 rounded-md hover:bg-slate-950 transition duration-200"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
-                            transition={{ duration: 0.6 }}
+
                         >
                             {isSubmitting ? 'Sending...' : 'Send Message'}
-                        </motion.button>
+                        </button>
                     </form>
 
                     {/* Status Message */}
@@ -149,7 +147,7 @@ const Contact = () => {
                             {formStatus}
                         </p>
                     )}
-                </motion.div>
+                </MotionDiv>
             </div>
         </section>
     );

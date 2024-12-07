@@ -2,6 +2,7 @@ import { logo } from '@/data/images';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MotionDiv, MotionH2, MotionP } from '../framer-motio';
 
 const Hero = () => {
   return (
@@ -9,33 +10,33 @@ const Hero = () => {
       <div className="flex flex-row w-screen items-center justify-center gap-20 absolute">
 
         {/* Animated Text */}
-        <motion.div
+        <MotionDiv
           className="flex flex-col items-end"
           initial={{ x: -500, opacity: 0, scale: 0.8 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ type: 'spring', stiffness: 100, damping: 30, delay: 0.2 }}
         >
-          <motion.h1
+          <MotionH2
             className="md:text-9xl text-6xl"
             initial={{ opacity: 0, }}
             animate={{ opacity: 1, }}
             transition={{ duration: 0.8, }}
           >
             Hum
-          </motion.h1>
-          <motion.b
+          </MotionH2>
+          <MotionP
             className="md:text-4xl text-2xl"
             initial={{ opacity: 0, }}
             animate={{ opacity: 1, }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Studios
-          </motion.b>
-        </motion.div>
+          </MotionP>
+        </MotionDiv>
 
         {/* Animated Logo */}
 
-        <motion.div
+        <MotionDiv
           className="w-[150px] sm:w-[200px] md:w-[300px] h-auto"
           initial={{ rotate: -360, x: -200 }}
           animate={{ rotate: 0, x: 0 }}
@@ -49,7 +50,7 @@ const Hero = () => {
             sizes="(max-width: 768px) 150px, (max-width: 1024px) 200px, 300px"
             className="w-[150px] sm:w-[200px] md:w-[300px] h-auto"
           />
-        </motion.div>
+        </MotionDiv>
 
 
       </div>
