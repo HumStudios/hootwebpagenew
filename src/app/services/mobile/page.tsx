@@ -58,7 +58,7 @@ const Page = () => {
                     className="container mx-auto py-16 px-6"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                     <h2 className="text-4xl font-bold text-center mb-10">Our Technology Stack</h2>
@@ -84,7 +84,7 @@ const Page = () => {
                         className="container mx-auto"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
+                        viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                     >
                         <h2 className="text-4xl font-bold text-center mb-10">Why Choose Hum Studios?</h2>
@@ -116,7 +116,7 @@ const Page = () => {
                         className="container mx-auto"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
+                        viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                     >
                         <h2 className="text-4xl font-bold text-center mb-10">Our Development Process</h2>
@@ -143,7 +143,7 @@ const Page = () => {
                         className="container mx-auto text-center"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, amount: 0.5 }}
+                        viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                     >
                         <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>

@@ -9,7 +9,7 @@ import { MotionDiv, MotionH2 } from '../framer-motio';
 const Feature = () => {
     const { ref, inView } = useInView({
         triggerOnce: true, // Triggers the animation once when it's in view
-        threshold: 0.5, // Trigger when 50% of the component is in view
+        threshold: 0.1, // Trigger when 50% of the component is in view
     });
 
     // Cool animation variants
@@ -24,7 +24,7 @@ const Feature = () => {
     };
 
     return (
-        <section id="featured" className="py-16 px-6" ref={ref}>
+        <section id="featured" className="py-5 md:py-14 lg:py-14 px-6" ref={ref}>
             <MotionH2
                 className="text-center text-4xl font-bold "
                 initial={{ opacity: 0, y: -50 }}
@@ -46,7 +46,8 @@ const Feature = () => {
                 {/* Mobile App Development */}
                 <Link href="/services/mobile">
                     <MotionDiv
-                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-96"
+                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-[26rem] "
+
                         initial="hidden"
                         animate={inView ? 'visible' : 'hidden'}
                         variants={cardVariants}
@@ -63,13 +64,18 @@ const Feature = () => {
                         <p className="text-gray-700">
                             We create intuitive and responsive mobile applications that provide seamless user experiences and help businesses expand their reach.
                         </p>
+
+                        <button className="bg-slate-800 text-white mt-2 py-1 px-8 rounded-md hover:bg-slate-950 transition duration-300">
+                            View
+                        </button>
+
                     </MotionDiv>
                 </Link>
 
                 {/* Web Development */}
                 <Link href="/services/web">
                     <MotionDiv
-                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-96"
+                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-[26rem] "
                         initial="hidden"
                         animate={inView ? 'visible' : 'hidden'}
                         variants={cardVariants}
@@ -86,13 +92,18 @@ const Feature = () => {
                         <p className="text-gray-700">
                             We specialize in building modern and responsive websites that drive engagement, enhance brand presence, and offer exceptional functionality.
                         </p>
+
+                        <button className="bg-slate-800 text-white mt-2 py-1 px-8 rounded-md hover:bg-slate-950 transition duration-300">
+                            View
+                        </button>
+
                     </MotionDiv>
                 </Link>
 
                 {/* Game Development */}
                 <Link href="/services/game">
                     <MotionDiv
-                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-96"
+                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl  transition-shadow transform hover:scale-105 h-[26rem] "
                         initial="hidden"
                         animate={inView ? 'visible' : 'hidden'}
                         variants={cardVariants}
@@ -109,6 +120,11 @@ const Feature = () => {
                         <p className="text-gray-700">
                             Our game development services combine creativity and cutting-edge technology to create engaging and immersive gaming experiences across platforms.
                         </p>
+
+                        <button className="bg-slate-800 text-white mt-2 py-1 px-8 rounded-md hover:bg-slate-950 transition duration-300">
+                            View
+                        </button>
+
                     </MotionDiv>
                 </Link>
 
