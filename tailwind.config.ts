@@ -12,6 +12,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         onsurface: "#F0F0F2",
+        textbronze: "#AE8F65",
       },
     },
   },

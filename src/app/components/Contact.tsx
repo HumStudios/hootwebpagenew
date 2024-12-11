@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser'
 import { MotionDiv } from '../framer-motio';
 const Contact = () => {
     const { ref, inView } = useInView({
-        triggerOnce: true,
+        triggerOnce: false,
         threshold: 0.5,
     });
 

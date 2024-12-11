@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer"; // Import the intersect
 
 const About = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Triggers the animation once when it's in view
+    triggerOnce: false, // Triggers the animation once when it's in view
     threshold: 0.1, // Trigger when 50% of the component is in view
   });
 
@@ -24,7 +24,7 @@ const About = () => {
         >
 
           <MotionH2
-            className="md:text-6xl text-3xl py-5 text-slate-500 gap-2"
+            className="md:text-8xl text-6xl py-5 text-textbronze gap-2"
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -53,7 +53,7 @@ const About = () => {
 
         {/* Animated Text */}
         <MotionDiv
-          className="md:w-1/2 lg:w-1/2 w-full  text-justify"
+          className="md:w-1/3 lg:w-1/2 w-full  text-justify"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 0.5 }}

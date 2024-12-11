@@ -1,9 +1,9 @@
 // pages/why-choose-us.js
 import { useInView } from "react-intersection-observer";
-import { MotionDiv } from "../framer-motio";
+import { MotionDiv, MotionH2 } from "../framer-motio";
 const WhyChooseUs = () => {
     const { ref: sectionRef, inView: sectionInView } = useInView({
-        triggerOnce: true,
+        triggerOnce: false,
         threshold: 0.1,
     });
 
@@ -27,17 +27,16 @@ const WhyChooseUs = () => {
         >
             <div className="container px-4 py-12">
                 {/* Title Section */}
-                <MotionDiv
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
-                    variants={scaleVariants}
-                    className="text-center mb-10"
-                >
-                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
-                        Why Choose Hum Studios?
-                    </h1>
-                    <p className="text-lg text-gray-600">We bring solutions</p>
-                </MotionDiv>
+                <MotionH2
+                className="md:text-[10rem] text-6xl font-bold text-textbronze tracking-tight leading-tight"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: sectionInView ? 1 : 0, y: sectionInView ? 0 : -50 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+            >
+                Why choose<br />
+                Hum
+
+            </MotionH2>
 
                 {/* Card Section */}
                 <MotionDiv

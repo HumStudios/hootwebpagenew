@@ -8,7 +8,7 @@ import { MotionDiv, MotionH2 } from '../framer-motio';
 
 const Feature = () => {
     const { ref, inView } = useInView({
-        triggerOnce: true, // Triggers the animation once when it's in view
+        triggerOnce: false, // Triggers the animation once when it's in view
         threshold: 0.1, // Trigger when 50% of the component is in view
     });
 
@@ -26,112 +26,93 @@ const Feature = () => {
     return (
         <section id="featured" className="py-5 md:py-14 lg:py-14 px-6" ref={ref}>
             <MotionH2
-                className="text-center text-4xl font-bold "
+                className="md:text-[10rem] text-6xl font-bold text-textbronze tracking-tight leading-tight"
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
                 transition={{ duration: 1, ease: 'easeOut' }}
             >
-                What we do
+                We do things<br />
+                Our way
 
             </MotionH2>
-            <p className="text-lg text-gray-600 text-center my-6">
-                From Concept to Execution, We Build Exceptional Digital Experiences
-            </p>
+           {/* Cards Section */}
             <MotionDiv
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: inView ? 1 : 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
+            
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-2" 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: inView ? 1 : 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
             >
-                {/* Mobile App Development */}
-                <Link href="/services/mobile">
-                    <MotionDiv
-                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-[26rem] "
+        {/* Card 1 */}
+<Link href="services/mobile">
+<div className="bg-gradient-to-br  p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 duration-300 ease-in-out">
+    <div className="flex justify-center items-center mb-6">
+        <div className="text-6xl">
+           
+        </div>
+    </div>
+    <h2 className="text-3xl font-extrabold mb-4 transition-all ease-in-out">
+        Mobile App Development
+    </h2>
+    <p className="text-lg opacity-90 mb-6 transition-all ease-in-out duration-300">
+        We create intuitive and responsive mobile applications that provide seamless user experiences and help businesses expand their reach.
+    </p>
+    <div
+      
+        className="bg-white text-textbronze hover:bg-textbronze hover:text-white py-3 px-8 rounded-full font-semibold transition-colors ease-in-out duration-300 "
+    >
+        View More
+    </div>
+</div>
+</Link>
 
-                        initial="hidden"
-                        animate={inView ? 'visible' : 'hidden'}
-                        variants={cardVariants}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                    >
-                        <Image
-                            src={mobile_dev}
-                            alt="Mobile Development"
-                            width={500} // Set to the actual width or desired display width
-                            height={300} // Set to the aspect ratio you want (e.g., 16:9 ratio)
-                            className="h-48 w-full object-cover rounded-lg " // Ensure the image scales correctly
-                        />
-                        <h3 className="text-xl font-semibold mb-4">Mobile App Development</h3>
-                        <p className="text-gray-700">
-                            We create intuitive and responsive mobile applications that provide seamless user experiences and help businesses expand their reach.
-                        </p>
+<Link href="services/web">
+{/* Card 2 */}
+<div className="bg-gradient-to-br  p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 duration-300 ease-in-out">
+    <div className="flex justify-center items-center mb-6">
+        <div className="text-6xl">
+            {/* Optional Icon */}
+        </div>
+    </div>
+    <h2 className="text-3xl font-extrabold mb-4 transition-all ease-in-out">
+        Web Development
+    </h2>
+    <p className="text-lg opacity-90 mb-6 transition-all ease-in-out duration-300">
+        We specialize in building modern and responsive websites that drive engagement, enhance brand presence, and offer exceptional functionality.
+    </p>
+    <div
+        
+        className="bg-white text-textbronze hover:bg-textbronze hover:text-white py-3 px-8 rounded-full font-semibold transition-colors ease-in-out duration-300"
+    >
+        View More
+    </div>
+</div>
+</Link>
 
-                        <button className="bg-slate-800 text-white mt-2 py-1 px-8 rounded-md hover:bg-slate-950 transition duration-300">
-                            View
-                        </button>
-
-                    </MotionDiv>
-                </Link>
-
-                {/* Web Development */}
-                <Link href="/services/web">
-                    <MotionDiv
-                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105 h-[26rem] "
-                        initial="hidden"
-                        animate={inView ? 'visible' : 'hidden'}
-                        variants={cardVariants}
-                        transition={{ duration: 0.8, delay: 0.7 }}
-                    >
-                        <Image
-                            src={web_dev}
-                            alt="Web Development"
-                            width={500} // Set to the actual width or desired display width
-                            height={300} // Set to the aspect ratio you want (e.g., 16:9 ratio)
-                            className="h-48 w-full object-cover rounded-lg " // Ensure the image scales correctly
-                        />
-                        <h3 className="text-xl font-semibold mb-4">Web Development</h3>
-                        <p className="text-gray-700">
-                            We specialize in building modern and responsive websites that drive engagement, enhance brand presence, and offer exceptional functionality.
-                        </p>
-
-                        <button className="bg-slate-800 text-white mt-2 py-1 px-8 rounded-md hover:bg-slate-950 transition duration-300">
-                            View
-                        </button>
-
-                    </MotionDiv>
-                </Link>
-
-                {/* Game Development */}
-                <Link href="/services/game">
-                    <MotionDiv
-                        className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl  transition-shadow transform hover:scale-105 h-[26rem] "
-                        initial="hidden"
-                        animate={inView ? 'visible' : 'hidden'}
-                        variants={cardVariants}
-                        transition={{ duration: 0.8, delay: 0.9 }}
-                    >
-                        <Image
-                            src={game_dev}
-                            alt="Game Development"
-                            width={500} // Set to the actual width or desired display width
-                            height={300} // Set to the aspect ratio you want (e.g., 16:9 ratio)
-                            className="h-48 w-full object-cover rounded-lg " // Ensure the image scales correctly
-                        />
-                        <h3 className="text-xl font-semibold mb-4">Game Development</h3>
-                        <p className="text-gray-700">
-                            Our game development services combine creativity and cutting-edge technology to create engaging and immersive gaming experiences across platforms.
-                        </p>
-
-                        <button className="bg-slate-800 text-white mt-2 py-1 px-8 rounded-md hover:bg-slate-950 transition duration-300">
-                            View
-                        </button>
-
-                    </MotionDiv>
-                </Link>
-
-                {/* Software Development */}
-
-
+<Link href="services/game">
+{/* Card 3 */}
+<div className="bg-gradient-to-br  p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 duration-300 ease-in-out">
+    <div className="flex justify-center items-center mb-6">
+        <div className="text-6xl">
+            {/* Optional Icon */}
+        </div>
+    </div>
+    <h2 className="text-3xl font-extrabold mb-4 transition-all ease-in-out">
+        Game Development
+    </h2>
+    <p className="text-lg opacity-90 mb-6 transition-all ease-in-out duration-300">
+        Our game development services combine creativity and cutting-edge technology to create engaging and immersive gaming experiences across platforms.
+    </p>
+    <div
+        
+        className="bg-white text-textbronze hover:bg-textbronze hover:text-white py-3 px-8 rounded-full font-semibold transition-colors ease-in-out duration-300"
+    >
+        View More
+    </div>
+</div>
+</Link>
             </MotionDiv>
+            
         </section>
     );
 };
