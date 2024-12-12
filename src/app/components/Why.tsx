@@ -1,6 +1,8 @@
 // pages/why-choose-us.js
+"use client";
 import { useInView } from "react-intersection-observer";
 import { MotionDiv, MotionH2 } from "../framer-motio";
+import { useState } from "react";
 const WhyChooseUs = () => {
     const { ref: sectionRef, inView: sectionInView } = useInView({
         triggerOnce: false,
@@ -20,76 +22,85 @@ const WhyChooseUs = () => {
         },
     };
 
-    return (
-        <div
-            className="min-h-screen flex items-center justify-center"
-            ref={sectionRef}
+    const [activeStep, setActiveStep] = useState(2); // Default to "Prototyping"
+
+  const steps = [
+    { title: "Elicitation", description: "", position: { x: "0%", y: "85%" } },
+    { title: "Forethinking", description: "", position: { x: "20%", y: "40%" } },
+    {
+      title: "Prototyping",
+      description:
+        "Visualizing the substance of the product concept, as well as the target audience and includes wireframes, style guides, and mock-ups.",
+      position: { x: "40%", y: "50%" },
+    },
+    { title: "Evolution", description: "", position: { x: "60%", y: "30%" } },
+    { title: "Testing & Integration", description: "", position: { x: "75%", y: "40%" } },
+    { title: "Deployment", description: "", position: { x: "90%", y: "20%" } },
+    { title: "Support & Maintenance", description: "", position: { x: "100%", y: "10%" } },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center w-full min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-semibold mb-10">How we work</h1>
+      <div className="relative w-11/12 max-w-4xl">
+        {/* Curved Line */}
+        <svg
+          className="absolute w-full h-48 top-0 left-0"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1000 200"
+          fill="none"
+          stroke="#9ca3af"
         >
-            <div className="container px-4 py-12">
-                {/* Title Section */}
-                <MotionH2
-                className="md:text-[10rem] text-6xl font-bold text-textbronze tracking-tight leading-tight"
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: sectionInView ? 1 : 0, y: sectionInView ? 0 : -50 }}
-                transition={{ duration: 1, ease: 'easeOut' }}
+          <path
+            d="M 0,180 C 150,60 350,40 500,100 C 650,160 850,140 1000,70"
+            strokeWidth="2"
+            fill="none"
+          />
+        </svg>
+
+        {/* Steps */}
+        {steps.map((step, index) => (
+          <div
+            key={index}
+            className="absolute text-center"
+            style={{
+              left: step.position.x,
+              top: step.position.y,
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {/* Dot */}
+            <div
+              className={`w-6 h-6 rounded-full border-2 cursor-pointer transition-transform duration-300 ${
+                activeStep === index
+                  ? "bg-black border-black scale-110"
+                  : "bg-white border-gray-400"
+              }`}
+              onClick={() => setActiveStep(index)}
+            ></div>
+            {/* Label */}
+            <p
+              className={`mt-2 text-sm ${
+                activeStep === index
+                  ? "font-bold text-black"
+                  : "text-gray-500"
+              }`}
             >
-                Why choose<br />
-                Hum
+              {step.title}
+            </p>
+          </div>
+        ))}
+      </div>
 
-            </MotionH2>
-
-                {/* Card Section */}
-                <MotionDiv
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
-                    variants={scaleVariants}
-                    className="grid md:grid-cols-3 gap-8"
-                >
-                    {/* Innovation Card */}
-                    <MotionDiv
-                        variants={scaleVariants}
-                        className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl"
-                    >
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                            Innovation
-                        </h3>
-                        <p className="text-gray-600">
-                            At Hum Studios, we strive to push the boundaries of creativity with every project, offering
-                            innovative solutions that redefine the digital experience.
-                        </p>
-                    </MotionDiv>
-
-                    {/* Expertise Card */}
-                    <MotionDiv
-                        variants={scaleVariants}
-                        className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl "
-                    >
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                            Expertise
-                        </h3>
-                        <p className="text-gray-600">
-                            Our team is composed of experienced developers and designers who specialize in both software and
-                            game development, ensuring top-quality products that meet the highest standards.
-                        </p>
-                    </MotionDiv>
-
-                    {/* Collaboration Card */}
-                    <MotionDiv
-                        variants={scaleVariants}
-                        className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl "
-                    >
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                            Collaboration
-                        </h3>
-                        <p className="text-gray-600">
-                            We value our partnerships and work closely with our clients to understand their vision, ensuring
-                            that the final product perfectly aligns with their expectations and goals.
-                        </p>
-                    </MotionDiv>
-                </MotionDiv>
-            </div>
+      {/* Description Box */}
+      {steps[activeStep].description && (
+        <div className="mt-10 p-5 bg-black text-white rounded-lg shadow-lg max-w-lg transition-all duration-300">
+          <p className="text-lg font-semibold">{steps[activeStep].title}</p>
+          <p className="mt-2 text-sm">{steps[activeStep].description}</p>
         </div>
-    );
+      )}
+    </div>
+    )
 };
 
 export default WhyChooseUs;

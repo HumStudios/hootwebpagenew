@@ -8,6 +8,7 @@ import Feature from "./components/Feature";
 import WhyChooseUs from "./components/Why";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Technologies from "./components/Technologies";
 
 export default function Home() {
   const lenis = useLenis(({ scroll }) => {
@@ -24,6 +25,7 @@ export default function Home() {
           <About />
           <Feature />
           <WhyChooseUs />
+          <Technologies/>
           <Contact />
 
         </ReactLenis>

@@ -68,7 +68,7 @@ const Contact = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Contact Us</h1>
+                    <h1 className="text-6xl font-bold text-textbronze tracking-tight leading-tight">Contact Us</h1>
                     <p className="text-lg text-gray-600">
                         We'd love to hear from you. Reach out to us for any inquiries or collaborations!
                     </p>

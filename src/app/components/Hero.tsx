@@ -17,7 +17,7 @@ const Hero = () => {
           transition={{ type: 'spring', stiffness: 100, damping: 30, delay: 0.2 }}
         >
           <MotionH2
-            className="md:text-[15rem] text-8xl font-sans font-extralight"
+            className="md:text-[15rem]  text-8xl font-sans font-extralight"
             initial={{ opacity: 0, }}
             animate={{ opacity: 1, }}
             transition={{ duration: 0.8, }}
