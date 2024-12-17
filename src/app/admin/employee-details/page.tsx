@@ -3,7 +3,7 @@ import ViewEmployeeDetails from "./details-view";// Adjust the path to your actu
 
 const EmployeeDetailsPage: React.FC = () => {
     return (
-        <div className="min-h-screen w-full bg-gray-50 text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
+        <div className="h-screen w-screen bg-background text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
             <Suspense fallback={<div>Loading...</div>}>
                 <ViewEmployeeDetails />
             </Suspense>

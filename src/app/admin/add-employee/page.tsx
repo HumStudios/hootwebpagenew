@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'; // Import from 'next/navigation' in Next.js 13+
+import { useRouter } from 'next/navigation';
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase/firebase';
 import Image from 'next/image';
@@ -9,23 +9,23 @@ const AddEmployee = () => {
     const router = useRouter();
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
-        setIsMounted(true); // Ensure the component is only mounted on the client side
+        setIsMounted(true);
     }, []);
 
     useEffect(() => {
         if (isMounted) {
-            // Check if the user is authenticated
             const unsubscribe = auth.onAuthStateChanged(user => {
                 if (!user) {
-                    router.push('/admin');  // Redirect to login page if not logged in
+                    router.push('/admin');
                 } else {
-                    setLoading(false);  // User is logged in, show dashboard
+                    setLoading(false);
                 }
             });
 
             return unsubscribe;
         }
     }, [isMounted, router]);
+
     const [employeeData, setEmployeeData] = useState({
         name: '',
         email: '',
@@ -36,10 +36,13 @@ const AddEmployee = () => {
         department: '',
         position: '',
         reporter: '',
-        image: null as File | null, // To hold the employee's image
+        emergencyContact: '',
+        joiningDate: '',
+        employmentType: '',
+        image: null as File | null,
     });
 
-    const [loading, setLoading] = useState(false); // Track loading state
+    const [loading, setLoading] = useState(false);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files ? e.target.files[0] : null;
@@ -62,23 +65,19 @@ const AddEmployee = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validate inputs before submitting
         if (!employeeData.name || !employeeData.email || !employeeData.phone) {
             alert('Please fill in all the required fields!');
             return;
         }
         const employeeCollection = collection(db, "employee");
         const snapshot = await getDocs(employeeCollection);
-        const serialNumber = snapshot.size + 1; // Increment by 1 for the new entry
+        const serialNumber = snapshot.size + 1;
 
-        // Set the document ID as name + dob + email
         const documentId = `Hum${employeeData.department}${employeeData.name}${employeeData.dob}${serialNumber}`;
 
-        // Set loading state to true when submitting
         setLoading(true);
 
         try {
-            // Add employee data to Firestore
             await setDoc(doc(db, "employee", documentId), {
                 name: employeeData.name,
                 email: employeeData.email,
@@ -89,37 +88,37 @@ const AddEmployee = () => {
                 department: employeeData.department,
                 position: employeeData.position,
                 reporter: employeeData.reporter,
-                image: "" // Handle image data
+                emergencyContact: employeeData.emergencyContact,
+                joiningDate: employeeData.joiningDate,
+                employmentType: employeeData.employmentType,
+                image: "",
             });
 
-            // Show success alert and redirect
             alert('Employee added successfully!');
-            router.push('/admin/dashboard'); // Redirect to the dashboard or another page
+            router.push('/admin/dashboard');
         } catch (error) {
             console.error("Error adding document: ", error);
             alert('Failed to add employee. Please try again!');
         } finally {
-            // Set loading state to false after submission is complete
             setLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
-            {/* Add Employee Form */}
-            <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-3xl font-semibold text-gray-900 mb-6">Add New Employee</h2>
+        <div className="min-h-screen bg-background text-gray-900 flex flex-col items-center justify-start p-8 space-y-8 overflow-auto">
+            <div className="w-full  bg-white p-8 rounded-lg shadow-xl border border-gray-300">
+                <h2 className="text-3xl font-semibold text-gray-800 mb-8 text-center">Add New Employee</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Image Picker */}
                     <div className="flex justify-center items-center mb-6">
-                        <label className="w-full text-center text-gray-500">
+                        <label className="w-full text-center text-gray-600">
                             <input
                                 type="file"
                                 onChange={handleImageChange}
                                 className="hidden"
                             />
-                            <div className="cursor-pointer w-full p-4 border-2 border-gray-300 rounded-md hover:border-blue-500">
+                            <div className="cursor-pointer w-full p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500">
                                 {employeeData.image ? (
                                     <Image
                                         src={URL.createObjectURL(employeeData.image)}
@@ -136,7 +135,7 @@ const AddEmployee = () => {
                     </div>
 
                     {/* Form Fields */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
                             <input
@@ -145,7 +144,7 @@ const AddEmployee = () => {
                                 name="name"
                                 value={employeeData.name}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                         </div>
@@ -158,7 +157,7 @@ const AddEmployee = () => {
                                 name="email"
                                 value={employeeData.email}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                         </div>
@@ -171,7 +170,7 @@ const AddEmployee = () => {
                                 name="dob"
                                 value={employeeData.dob}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -183,7 +182,7 @@ const AddEmployee = () => {
                                 name="bloodGroup"
                                 value={employeeData.bloodGroup}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -194,7 +193,7 @@ const AddEmployee = () => {
                                 name="address"
                                 value={employeeData.address}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                                 rows={4}
                             />
                         </div>
@@ -207,9 +206,52 @@ const AddEmployee = () => {
                                 name="phone"
                                 value={employeeData.phone}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                                 required
                             />
+                        </div>
+
+                        {/* Emergency Contact */}
+                        <div>
+                            <label htmlFor="emergencyContact" className="block text-sm font-medium text-gray-700">Emergency Contact</label>
+                            <input
+                                type="text"
+                                id="emergencyContact"
+                                name="emergencyContact"
+                                value={employeeData.emergencyContact}
+                                onChange={handleChange}
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+
+                        {/* Joining Date */}
+                        <div>
+                            <label htmlFor="joiningDate" className="block text-sm font-medium text-gray-700">Joining Date</label>
+                            <input
+                                type="date"
+                                id="joiningDate"
+                                name="joiningDate"
+                                value={employeeData.joiningDate}
+                                onChange={handleChange}
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+
+                        {/* Employment Type */}
+                        <div>
+                            <label htmlFor="employmentType" className="block text-sm font-medium text-gray-700">Employment Type</label>
+                            <select
+                                id="employmentType"
+                                name="employmentType"
+                                value={employeeData.employmentType}
+                                onChange={handleChange}
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Select Employment Type</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                            </select>
                         </div>
 
                         {/* Department Dropdown */}
@@ -220,14 +262,12 @@ const AddEmployee = () => {
                                 name="department"
                                 value={employeeData.department}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="">Select Department</option>
                                 <option value="Development">Development</option>
                                 <option value="Digital">Digital</option>
                                 <option value="Operations">Operations</option>
-
-                                {/* Add more departments as needed */}
                             </select>
                         </div>
 
@@ -239,7 +279,7 @@ const AddEmployee = () => {
                                 name="position"
                                 value={employeeData.position}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="">Select Position</option>
                                 <option value="Manager">Manager</option>
@@ -247,8 +287,6 @@ const AddEmployee = () => {
                                 <option value="Designer">Designer</option>
                                 <option value="Analyst">Analyst</option>
                                 <option value="CEO">CEO</option>
-                                <option value="MD">MD</option>
-                                {/* Add more positions as needed */}
                             </select>
                         </div>
 
@@ -260,13 +298,11 @@ const AddEmployee = () => {
                                 name="reporter"
                                 value={employeeData.reporter}
                                 onChange={handleChange}
-                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                                className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="">Select Reporter</option>
                                 <option value="Manager">Manager</option>
                                 <option value="CEO">CEO</option>
-                                <option value="MD">MD</option>
-                                {/* Add more reporters as needed */}
                             </select>
                         </div>
                     </div>
@@ -275,11 +311,11 @@ const AddEmployee = () => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className="mt-6 px-8 py-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-all"
-                            disabled={loading} // Disable the button while loading
+                            className="mt-6 px-80 py-3 text-white bg-black rounded-md hover:bg-textbronze focus:ring-2  hover:scale-125 transition-all"
+                            disabled={loading}
                         >
                             {loading ? (
-                                <span>Loading...</span> // Show loader text or an animation here
+                                <span>Loading...</span>
                             ) : (
                                 'Add Employee'
                             )}

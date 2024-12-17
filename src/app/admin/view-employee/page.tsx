@@ -63,50 +63,64 @@ const ViewEmployees: React.FC = () => {
     }, [isMounted]);
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
-            <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-3xl font-semibold text-gray-900 mb-6">View Employees</h2>
-
-                {loading ? (
-                    <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
-                    </div>
-                ) : employees.length > 0 ? (
-                    <div className="space-y-6">
-                        {/* Display all employees */}
-                        {employees.map((employee) => (
-                            <div key={employee.id} className="border-b border-gray-300 pb-6">
-                                <div className="flex justify-between items-center">
-                                    {/* Image Preview */}
-
-
-                                    {/* Employee Details */}
-                                    <div className="flex-1">
-                                        <p className="font-semibold text-lg text-gray-900">{employee.name}</p>
-                                        <p className="text-sm text-gray-600">Email: {employee.email}</p>
-                                        <p className="text-sm text-gray-600">Phone: {employee.phone}</p>
-                                        <p className="text-sm text-gray-600">Department: {employee.department}</p>
-                                        <p className="text-sm text-gray-600">Position: {employee.position}</p>
+        <div className="h-screen bg-gray-50 text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
+        <div className="w-full bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-3xl font-semibold text-gray-900 mb-6">View Employees</h2>
+    
+            {loading ? (
+                <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+                </div>
+            ) : employees.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {/* Display all employees as cards */}
+                    {employees.map((employee) => (
+                        <div
+                            key={employee.id}
+                            className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300"
+                        >
+                            {/* Image Preview */}
+                            <div className="flex justify-center mb-4">
+                                {employee.image ? (
+                                    <img
+                                        src={employee.image}
+                                        alt="Employee"
+                                        className="w-24 h-24 object-cover rounded-full border-2 border-gray-300"
+                                    />
+                                ) : (
+                                    <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
+                                        <span className="text-gray-600">No Image</span>
                                     </div>
-
-                                    {/* View Button */}
-                                    <div className="ml-4">
-                                        <button
-                                            onClick={() => router.push(`/admin/employee-details?id=${employee.id}`)}
-                                            className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
-                                        >
-                                            View Details
-                                        </button>
-                                    </div>
-                                </div>
+                                )}
                             </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="text-center text-gray-600">No employees found</div>
-                )}
-            </div>
+    
+                            {/* Employee Details */}
+                            <div>
+                                <p className="font-semibold text-lg text-gray-900">{employee.name}</p>
+                                <p className="text-sm text-gray-600">Email: {employee.email}</p>
+                                <p className="text-sm text-gray-600">Phone: {employee.phone}</p>
+                                <p className="text-sm text-gray-600">Department: {employee.department}</p>
+                                <p className="text-sm text-gray-600">Position: {employee.position}</p>
+                            </div>
+    
+                            {/* View Button */}
+                            <div className="mt-4 text-center">
+                                <button
+                                    onClick={() => router.push(`/admin/employee-details?id=${employee.id}`)}
+                                    className="px-4 py-2 text-white bg-black rounded-md hover:bg-textbronze focus:ring-2  hover:scale-125 focus:ring-blue-500"
+                                >
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center text-gray-600">No employees found</div>
+            )}
         </div>
+    </div>
+    
     );
 };
 

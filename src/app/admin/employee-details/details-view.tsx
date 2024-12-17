@@ -6,7 +6,7 @@ import { db } from "@/firebase/firebase";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-// Define the Employee type
+// Define the Employee type with the new fields
 type Employee = {
     id: string;
     name: string;
@@ -18,6 +18,10 @@ type Employee = {
     reporter: string;
     blood: string;
     image: string;
+    dob: string;
+    emergencyContact: string;
+    joiningDate: string;
+    employmentType: string;
 };
 
 const ViewEmployeeDetails: React.FC = () => {
@@ -58,6 +62,10 @@ const ViewEmployeeDetails: React.FC = () => {
                             address: data.address,
                             blood: data.bloodGroup,
                             image: data.image,
+                            dob: data.dob,
+                            emergencyContact: data.emergencyContact,
+                            joiningDate: data.joiningDate,
+                            employmentType: data.employmentType,
                         });
                     } else {
                         alert("Employee not found");
@@ -76,8 +84,8 @@ const ViewEmployeeDetails: React.FC = () => {
     }, [isMounted, router, searchParams]);
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
-            <div className="w-full  bg-white p-8 rounded-lg shadow-lg">
+        <div className="min-h-screen w-full bg-background text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
+            <div className="w-full bg-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-semibold text-gray-900 mb-6">Employee Details</h2>
 
                 {loading ? (
@@ -104,7 +112,7 @@ const ViewEmployeeDetails: React.FC = () => {
                         </div>
 
                         {/* Employee Details */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 ">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Name</label>
                                 <input
@@ -184,13 +192,54 @@ const ViewEmployeeDetails: React.FC = () => {
                                     className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
                                 />
                             </div>
+
+                            {/* New Fields */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Date of Birth</label>
+                                <input
+                                    type="text"
+                                    value={employee.dob}
+                                    readOnly
+                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Emergency Contact</label>
+                                <input
+                                    type="text"
+                                    value={employee.emergencyContact}
+                                    readOnly
+                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Joining Date</label>
+                                <input
+                                    type="text"
+                                    value={employee.joiningDate}
+                                    readOnly
+                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Employment Type</label>
+                                <input
+                                    type="text"
+                                    value={employee.employmentType}
+                                    readOnly
+                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+                                />
+                            </div>
                         </div>
 
                         {/* Back Button */}
                         <div className="flex justify-center mt-6">
                             <button
                                 onClick={() => router.push("/admin/view-employee")}
-                                className="px-8 py-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-all"
+                                className="px-8 py-3 text-white bg-black rounded-md hover:bg-textbronze focus:ring-2 hover:scale-125 focus:ring-blue-500 transition-all"
                             >
                                 Back to Employees List
                             </button>
