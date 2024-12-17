@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Hum Studios",
-  description: "Hum studios",
+  description: "We are just humming",
 };
 
 export default function RootLayout({
