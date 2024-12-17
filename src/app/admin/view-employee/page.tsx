@@ -78,17 +78,7 @@ const ViewEmployees: React.FC = () => {
                             <div key={employee.id} className="border-b border-gray-300 pb-6">
                                 <div className="flex justify-between items-center">
                                     {/* Image Preview */}
-                                    <div className="w-16 h-16 mr-6">
-                                        {employee.image ? (
-                                            <img
-                                                src={employee.image}
-                                                alt="Employee"
-                                                className="w-full h-full object-cover rounded-md"
-                                            />
-                                        ) : (
-                                            <p>No image available</p>
-                                        )}
-                                    </div>
+
 
                                     {/* Employee Details */}
                                     <div className="flex-1">

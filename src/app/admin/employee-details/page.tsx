@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 // Define the Employee type
 type Employee = {
@@ -89,10 +90,12 @@ const ViewEmployeeDetails: React.FC = () => {
                         <div className="flex justify-center items-center mb-6">
                             <div className="w-full p-4 border-2 border-gray-300 rounded-md">
                                 {employee.image ? (
-                                    <img
+                                    <Image
                                         src={employee.image}
                                         alt="Employee"
                                         className="w-full h-48 object-cover rounded-md"
+                                        height={100}
+                                        width={100}
                                     />
                                 ) : (
                                     <p>No image available</p>
