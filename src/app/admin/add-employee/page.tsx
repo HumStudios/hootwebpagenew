@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // Import from 'next/navigation' in Next.js 13+
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase/firebase';
+import Image from 'next/image';
 
 const AddEmployee = () => {
     const router = useRouter();
@@ -120,10 +121,12 @@ const AddEmployee = () => {
                             />
                             <div className="cursor-pointer w-full p-4 border-2 border-gray-300 rounded-md hover:border-blue-500">
                                 {employeeData.image ? (
-                                    <img
+                                    <Image
                                         src={URL.createObjectURL(employeeData.image)}
                                         alt="Employee"
                                         className="w-full h-48 object-cover rounded-md"
+                                        height={1000}
+                                        width={1000}
                                     />
                                 ) : (
                                     <p>Click to Upload Image</p>
