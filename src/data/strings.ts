@@ -1,0 +1,40 @@
+export const companyPositions = [
+    "CEO",
+    "CTO",
+    "VP of Engineering",
+    "Engineering Manager",
+    "Product Manager",
+    "Software Engineer",
+    "QA Engineer",
+    "Design Lead",
+    "UI/UX Designer",
+    "DevOps Lead",
+    "Data Scientist",
+    "Business Analyst",
+    "HR Manager",
+    "Marketing Manager",
+    "Sales Manager",
+    "Customer Support Lead",
+    "Finance Manager",
+    "Legal Advisor",
+    "Chief Financial Officer (CFO)",
+    "Chief Operating Officer (COO)",
+    "Chief Marketing Officer (CMO)",
+    "Chief Product Officer (CPO)",
+    "Chief Technology Officer (CTO)",
+  ];
+
+
+  export const bloodGroups = [
+    "A+",
+    "A-",
+    "B+",
+    "B-",
+    "AB+",
+    "AB-",
+    "O+",
+    "O-",
+    "Rh+",
+    "Rh-",
+  ];
+  

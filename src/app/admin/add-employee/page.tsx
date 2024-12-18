@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase/firebase';
 import Image from 'next/image';
+import { uploadImageToS3 } from '@/s3/s3';
+import { companyPositions } from '@/data/strings';
 
 const AddEmployee = () => {
     const router = useRouter();
@@ -73,11 +75,15 @@ const AddEmployee = () => {
         const snapshot = await getDocs(employeeCollection);
         const serialNumber = snapshot.size + 1;
 
-        const documentId = `Hum${employeeData.department}${employeeData.name}${employeeData.dob}${serialNumber}`;
+        const documentId = `Hum${employeeData.department}${employeeData.name.replace(/\s+/g, '')}${employeeData.dob}${serialNumber}`;
 
         setLoading(true);
 
         try {
+            let imageUrl = '';
+            if (employeeData.image) {
+                imageUrl = await uploadImageToS3(employeeData.image);
+            }
             await setDoc(doc(db, "employee", documentId), {
                 name: employeeData.name,
                 email: employeeData.email,
@@ -91,7 +97,7 @@ const AddEmployee = () => {
                 emergencyContact: employeeData.emergencyContact,
                 joiningDate: employeeData.joiningDate,
                 employmentType: employeeData.employmentType,
-                image: "",
+                image: imageUrl,
             });
 
             alert('Employee added successfully!');
@@ -111,20 +117,20 @@ const AddEmployee = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Image Picker */}
-                    <div className="flex justify-center items-center mb-6">
-                        <label className="w-full text-center text-gray-600">
+                    <div className="flex  justify-center items-center mb-6">
+                        <label className=" text-center text-gray-600">
                             <input
                                 type="file"
                                 onChange={handleImageChange}
                                 className="hidden"
                             />
-                            <div className="cursor-pointer w-full p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500">
+                            <div className="cursor-pointer w-[20rem]  h-[20rem] p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500">
                                 {employeeData.image ? (
                                     <Image
                                         src={URL.createObjectURL(employeeData.image)}
                                         alt="Employee"
-                                        className="w-full h-48 object-cover rounded-md"
-                                        height={1000}
+                                        className="w-[18rem] h-[18rem] object-cover rounded-md"
+                                        height={200}
                                         width={1000}
                                     />
                                 ) : (
@@ -176,14 +182,22 @@ const AddEmployee = () => {
 
                         <div>
                             <label htmlFor="bloodGroup" className="block text-sm font-medium text-gray-700">Blood Group</label>
-                            <input
-                                type="text"
+                            <select
                                 id="bloodGroup"
                                 name="bloodGroup"
                                 value={employeeData.bloodGroup}
                                 onChange={handleChange}
                                 className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-                            />
+                            >
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
                         </div>
 
                         <div>
@@ -251,6 +265,7 @@ const AddEmployee = () => {
                                 <option value="Full-time">Full-time</option>
                                 <option value="Part-time">Part-time</option>
                                 <option value="Contract">Contract</option>
+                                <option value="Contract">Intern</option>
                             </select>
                         </div>
 
@@ -268,6 +283,7 @@ const AddEmployee = () => {
                                 <option value="Development">Development</option>
                                 <option value="Digital">Digital</option>
                                 <option value="Operations">Operations</option>
+                                <option value="Studios">Studios</option>
                             </select>
                         </div>
 
@@ -282,11 +298,11 @@ const AddEmployee = () => {
                                 className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="">Select Position</option>
-                                <option value="Manager">Manager</option>
-                                <option value="Developer">Developer</option>
-                                <option value="Designer">Designer</option>
-                                <option value="Analyst">Analyst</option>
-                                <option value="CEO">CEO</option>
+                                {companyPositions.map((role, index) => (
+                                    <option key={index} value={role}>
+                                        {role}
+                                    </option>
+                                ))}
                             </select>
                         </div>
 
@@ -301,8 +317,12 @@ const AddEmployee = () => {
                                 className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="">Select Reporter</option>
-                                <option value="Manager">Manager</option>
-                                <option value="CEO">CEO</option>
+                                {companyPositions.map((role, index) => (
+                                    <option key={index} value={role}>
+                                        {role}
+                                    </option>
+                                ))}
+
                             </select>
                         </div>
                     </div>

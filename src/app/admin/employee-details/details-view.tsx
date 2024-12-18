@@ -6,7 +6,6 @@ import { db } from "@/firebase/firebase";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-// Define the Employee type with the new fields
 type Employee = {
     id: string;
     name: string;
@@ -29,225 +28,171 @@ const ViewEmployeeDetails: React.FC = () => {
     const searchParams = useSearchParams();
     const [employee, setEmployee] = useState<Employee | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true); // Ensure the component is only mounted on the client side
-    }, []);
-
-    useEffect(() => {
-        if (isMounted) {
-            const employeeId = searchParams.get("id");
-
-            if (!employeeId) {
-                router.push("/admin"); // Redirect if no ID is provided
-                return;
-            }
-
-            const fetchEmployeeData = async () => {
-                try {
-                    const docRef = doc(db, "employee", employeeId); // Fetching employee by ID
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        setEmployee({
-                            id: docSnap.id,
-                            name: data.name,
-                            email: data.email,
-                            phone: data.phone,
-                            department: data.department,
-                            position: data.position,
-                            reporter: data.reporter,
-                            address: data.address,
-                            blood: data.bloodGroup,
-                            image: data.image,
-                            dob: data.dob,
-                            emergencyContact: data.emergencyContact,
-                            joiningDate: data.joiningDate,
-                            employmentType: data.employmentType,
-                        });
-                    } else {
-                        alert("Employee not found");
-                        router.push("/admin"); // Redirect to dashboard if employee doesn't exist
-                    }
-                } catch (error) {
-                    console.error("Error fetching employee data: ", error);
-                    alert("Failed to fetch employee data");
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            fetchEmployeeData();
+        const employeeId = searchParams.get("id");
+        if (!employeeId) {
+            router.push("/admin");
+            return;
         }
-    }, [isMounted, router, searchParams]);
+
+        const fetchEmployeeData = async () => {
+            try {
+                const docRef = doc(db, "employee", employeeId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    setEmployee({
+                        id: docSnap.id,
+                        name: data.name,
+                        email: data.email,
+                        phone: data.phone,
+                        department: data.department,
+                        position: data.position,
+                        reporter: data.reporter,
+                        address: data.address,
+                        blood: data.bloodGroup,
+                        image: data.image,
+                        dob: data.dob,
+                        emergencyContact: data.emergencyContact,
+                        joiningDate: data.joiningDate,
+                        employmentType: data.employmentType,
+                    });
+                } else {
+                    router.push("/admin");
+                }
+            } catch (error) {
+                console.error("Error fetching employee data: ", error);
+                alert("Failed to fetch employee data");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchEmployeeData();
+    }, [router, searchParams]);
+
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Employee ID copied to clipboard!");
+        }).catch((error) => {
+            console.error("Failed to copy ID: ", error);
+            alert("Failed to copy ID. Please try again.");
+        });
+    };
 
     return (
-        <div className="min-h-screen w-full bg-background text-gray-800 flex flex-col items-center justify-center p-8 space-y-8">
-            <div className="w-full bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-3xl font-semibold text-gray-900 mb-6">Employee Details</h2>
+        <div className="min-h-screen w-full bg-f0f0f2 text-gray-800 flex flex-col items-center py-8 px-4">
+            <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
+                <h1 className="text-2xl font-bold text-slate-900 mb-4">Employee Details</h1>
 
                 {loading ? (
-                    <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+                    <div className="flex justify-center items-center h-64">
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-slate-900"></div>
                     </div>
                 ) : employee ? (
-                    <div className="space-y-6">
-                        {/* Image Preview */}
-                        <div className="flex justify-center items-center mb-6">
-                            <div className="w-full p-4 border-2 border-gray-300 rounded-md">
-                                {employee.image ? (
-                                    <Image
-                                        src={employee.image}
-                                        alt="Employee"
-                                        className="w-full h-48 object-cover rounded-md"
-                                        height={100}
-                                        width={100}
-                                    />
-                                ) : (
-                                    <p>No image available</p>
-                                )}
-                            </div>
+                    <div className="flex flex-col lg:flex-row gap-6">
+                        {/* Image Section */}
+                        <div className="w-full lg:w-1/3 h-48 flex justify-center">
+                            {employee.image ? (
+                                <Image
+                                    src={employee.image}
+                                    alt="Employee"
+                                    className="rounded-md shadow-lg"
+                                    width={200}
+                                    height={200}
+                                />
+                            ) : (
+                                <div className="w-48 h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">
+                                    No Image
+                                </div>
+                            )}
                         </div>
 
-                        {/* Employee Details */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 ">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Name</label>
-                                <input
-                                    type="text"
-                                    value={employee.name}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
-                            </div>
+                        {/* Details Section */}
+                        <div className="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {/* Copy Employee ID Section */}
+                            <div className="col-span-1 sm:col-span-2 flex items-center gap-2">
+                                <div>
+                                    <div className="flex flex-row gap-5">
+                                        <p className="text-gray-600 text-sm ">Employee ID</p>
+                                        <button
+                                            onClick={() => copyToClipboard(employee.id)}
+                                            className=" bg-gray-400 text-white text-sm rounded-md hover:bg-blue-700 transition"
+                                        >
+                                            Copy
+                                        </button>
+                                    </div>
 
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Email</label>
-                                <input
-                                    type="email"
-                                    value={employee.email}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
-                            </div>
+                                    <p className="text-slate-900 font-semibold">{employee.id}</p>
 
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                                <input
-                                    type="text"
-                                    value={employee.phone}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
-                            </div>
+                                </div>
 
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Department</label>
-                                <input
-                                    type="text"
-                                    value={employee.department}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
                             </div>
-
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Position</label>
-                                <input
-                                    type="text"
-                                    value={employee.position}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Name</p>
+                                <p className="text-slate-900 font-semibold">{employee.name}</p>
                             </div>
-
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Reporter</label>
-                                <input
-                                    type="text"
-                                    value={employee.reporter}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Email</p>
+                                <p className="text-slate-900 font-semibold">{employee.email}</p>
                             </div>
-
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Address</label>
-                                <textarea
-                                    value={employee.address}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                    rows={4}
-                                />
+                                <p className="text-gray-600 text-sm">Phone</p>
+                                <p className="text-slate-900 font-semibold">{employee.phone}</p>
                             </div>
-
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Blood Group</label>
-                                <input
-                                    type="text"
-                                    value={employee.blood}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Department</p>
+                                <p className="text-slate-900 font-semibold">{employee.department}</p>
                             </div>
-
-                            {/* New Fields */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Date of Birth</label>
-                                <input
-                                    type="text"
-                                    value={employee.dob}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Position</p>
+                                <p className="text-slate-900 font-semibold">{employee.position}</p>
                             </div>
-
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Emergency Contact</label>
-                                <input
-                                    type="text"
-                                    value={employee.emergencyContact}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Reporter</p>
+                                <p className="text-slate-900 font-semibold">{employee.reporter}</p>
                             </div>
-
+                            <div className="col-span-1 sm:col-span-2">
+                                <p className="text-gray-600 text-sm">Address</p>
+                                <p className="text-slate-900 font-semibold">{employee.address}</p>
+                            </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Joining Date</label>
-                                <input
-                                    type="text"
-                                    value={employee.joiningDate}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Blood Group</p>
+                                <p className="text-slate-900 font-semibold">{employee.blood}</p>
                             </div>
-
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Employment Type</label>
-                                <input
-                                    type="text"
-                                    value={employee.employmentType}
-                                    readOnly
-                                    className="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-100"
-                                />
+                                <p className="text-gray-600 text-sm">Date of Birth</p>
+                                <p className="text-slate-900 font-semibold">{employee.dob}</p>
                             </div>
-                        </div>
-
-                        {/* Back Button */}
-                        <div className="flex justify-center mt-6">
-                            <button
-                                onClick={() => router.push("/admin/view-employee")}
-                                className="px-8 py-3 text-white bg-black rounded-md hover:bg-textbronze focus:ring-2 hover:scale-125 focus:ring-blue-500 transition-all"
-                            >
-                                Back to Employees List
-                            </button>
+                            <div>
+                                <p className="text-gray-600 text-sm">Emergency Contact</p>
+                                <p className="text-slate-900 font-semibold">{employee.emergencyContact}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-600 text-sm">Joining Date</p>
+                                <p className="text-slate-900 font-semibold">{employee.joiningDate}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-600 text-sm">Employment Type</p>
+                                <p className="text-slate-900 font-semibold">{employee.employmentType}</p>
+                            </div>
                         </div>
                     </div>
                 ) : (
                     <div className="text-center text-gray-600">Employee not found</div>
                 )}
+
+                {/* Back Button */}
+                <div className="flex justify-center mt-6">
+                    <button
+                        onClick={() => router.push("/admin/view-employee")}
+                        className="px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-AE8F65 transform transition-transform hover:scale-105"
+                    >
+                        Back to Employee List
+                    </button>
+                </div>
             </div>
         </div>
     );

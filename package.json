@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.714.0",
     "@emailjs/browser": "^4.4.1",
     "@studio-freight/react-lenis": "^0.0.47",
     "firebase": "^11.1.0",
